@@ -16,7 +16,7 @@ if(curtir === "heart-outline"){
 }
 
     return (
-      <div data teste="post" class="post">
+      <div data-test="post" class="post">
         <div class="topo">
           <div class="usuario">
             <img src={props.imagemUser} />
