@@ -3,17 +3,28 @@ import React, { useState } from "react"
 export default function Post(props) {
 const [salvar, setsalvar] = useState ("bookmark-outline") //Salvar Post
 const [curtir, setcurtir] = useState ("heart-outline") // Curtir o post (coração)
-const [colorir, setcolorir] = useState ("black") // Colorir o coração)
+const [colorir, setcolorir] = useState ("black") // Colorir o coração
+const [somarLikes, setsomarLikes] = useState (props.nCurtidas) // Somar Likes)
 
 function Curtir(){
 if(curtir === "heart-outline"){
   setcurtir("heart")
   setcolorir("red")
+  setsomarLikes(Number(props.nCurtidas) + 0.001)
+  console.log(setsomarLikes)
 } else {
   setcurtir("heart-outline")
   setcolorir("black")
+  setsomarLikes(Number(props.nCurtidas))
 }
 }
+
+function CurtirFoto(){
+  if(curtir === "heart-outline"){
+    setcurtir("heart")
+    setcolorir("red")
+    setsomarLikes(Number(props.nCurtidas) + 0.001)
+}}
 
     return (
       <div data-test="post" class="post">
@@ -28,7 +39,7 @@ if(curtir === "heart-outline"){
         </div>
   
         <div class="conteudo">
-          <img data-test="post-image" src={props.imagemPost} />
+          <img onClick={CurtirFoto}data-test="post-image" src={props.imagemPost} />
         </div>
   
         <div class="fundo">
@@ -46,7 +57,7 @@ if(curtir === "heart-outline"){
           <div class="curtidas">
             <img src={props.imagemCurtidas} />
             <div class="texto">
-              Curtido por <strong>{props.userCurtidas}</strong> e <strong data-test="likes-number">{props.textoCurtidas}</strong>
+              Curtido por <strong>{props.userCurtidas}</strong> e outras <strong data-test="likes-number">{somarLikes} pessoas</strong>
             </div>
           </div>
         </div>
